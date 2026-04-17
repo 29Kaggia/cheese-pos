@@ -1,0 +1,154 @@
+/* ===== BASE ===== */
+body {
+    font-family: 'DM Sans', sans-serif;
+    background: #f9fafb;
+}
+
+/* ===== PAGE WRAPPER ===== */
+.page {
+    padding: 24px 0;
+}
+
+/* ===== HEADER ROW ===== */
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.page-title {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+    color: #9ca3af;
+}
+
+/* ===== BUTTON ===== */
+.btn {
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 6px;
+    padding: 6px 12px;
+    display: inline-block;
+}
+
+.btn-primary {
+    background: #E6F1FB;
+    color: #185FA5;
+}
+
+/* ===== TABLE WRAPPER ===== */
+.card {
+    border: 0.5px solid #e5e7eb;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #fff;
+}
+
+/* ===== TABLE ===== */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.table thead tr {
+    background: #f9fafb;
+    border-bottom: 0.5px solid #e5e7eb;
+}
+
+.table th {
+    padding: 10px 16px;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .07em;
+    color: #9ca3af;
+    text-align: left;
+}
+
+.table td {
+    padding: 11px 16px;
+    border-bottom: 0.5px solid #f0f0ec;
+}
+
+/* zebra rows */
+.table tbody tr:nth-child(even) {
+    background: #fafaf8;
+}
+
+/* ===== PRICE ===== */
+.price {
+    text-align: right;
+    font-family: monospace;
+    font-weight: 600;
+    color: #185FA5;
+}
+
+/* ===== STOCK BADGES ===== */
+.badge {
+    font-size: 10px;
+    font-weight: 600;
+    font-family: monospace;
+    border-radius: 4px;
+    padding: 2px 8px;
+}
+
+.badge-danger {
+    background: #FCEBEB;
+    color: #A32D2D;
+}
+
+.badge-warning {
+    background: #FAEEDA;
+    color: #633806;
+}
+
+.badge-success {
+    background: #EAF3DE;
+    color: #27500A;
+}
+
+/* ===== ACTIONS ===== */
+.actions {
+    display: inline-flex;
+    gap: 6px;
+}
+
+.btn-sm {
+    font-size: 11px;
+    font-weight: 600;
+    border-radius: 5px;
+    padding: 4px 10px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-edit {
+    color: #374151;
+    border: 0.5px solid #d1d5db;
+    background: #fff;
+}
+
+.btn-delete {
+    color: #A32D2D;
+    border: 0.5px solid #F7C1C1;
+    background: #FCEBEB;
+}
+
+.form-input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    font-size: 13px;
+    outline: none;
+}
+
+.form-input:focus {
+    border-color: #185FA5;
+    box-shadow: 0 0 0 2px rgba(24,95,165,0.15);
+}
