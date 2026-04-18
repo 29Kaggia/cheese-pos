@@ -38,17 +38,64 @@ class DashboardController extends AppController
     }
 
 
-    public function dashboard()
+  public function dashboard()
 {
-    $Products = $this->fetchTable('Products');
+    $Products  = $this->fetchTable('Products');
+    $Sales     = $this->fetchTable('Sales');
+    $SaleItems = $this->fetchTable('SaleItems');
 
-    $lowStock = $Products->find()
-        ->where(['stock <' => 5])
-        ->all();
-
+    // Total products
     $totalProducts = $Products->find()->count();
 
-    $this->set(compact('lowStock', 'totalProducts'));
+    // Total revenue
+    $totalRevenue = $Sales->find()
+        ->select(['sum' => $Sales->find()->func()->sum('total')])
+        ->first()
+        ->sum ?? 0;
+
+    // Low stock (stock < 5)
+    $lowStock = $Products->find()
+        ->where(['stock <' => 5])
+        ->orderBy(['stock' => 'ASC'])
+        ->all()
+        ->toList();
+
+    // Recent sales (last 10)
+    $recentSales = $Sales->find()
+        ->orderBy(['created' => 'DESC'])
+        ->limit(10)
+        ->all()
+        ->toList();
+
+    // Best sellers (top 5 by units sold)
+    $bestSellers = $SaleItems->find()
+        ->select([
+            'product_id',
+            'total_sold' => $SaleItems->find()->func()->sum('quantity'),
+            'product_name' => 'Products.name',
+        ])
+        ->contain(['Products'])
+        ->groupBy('SaleItems.product_id')
+        ->orderBy(['total_sold' => 'DESC'])
+        ->limit(5)
+        ->all()
+        ->toList();
+
+    // Stock levels (all products for bars)
+    $stockLevels = $Products->find()
+        ->select(['name', 'stock', 'max_stock'])
+        ->orderBy(['stock' => 'ASC'])
+        ->all()
+        ->toList();
+
+    $this->set([
+        'totalProducts' => $totalProducts,
+        'totalRevenue'  => $totalRevenue,
+        'lowStock'      => $lowStock,
+        'recentSales'   => $recentSales,
+        'bestSellers'   => $bestSellers,
+        'stockLevels'   => $stockLevels,
+    ]);
 }
     /**
      * Add method
